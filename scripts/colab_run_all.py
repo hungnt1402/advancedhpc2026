@@ -3,6 +3,7 @@
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -14,8 +15,17 @@ def git(repo, *args, env=None):
         ["git", "-C", str(repo), *args], capture_output=True, text=True, env=env
     )
     if result.returncode:
-        # Do not expose credential helper output or credentials in exceptions.
-        raise RuntimeError(f"Git {args[0]} failed (exit {result.returncode}).")
+        details = (result.stderr or result.stdout).strip()
+        for name in ("COLAB_PUSH_TOKEN", "GITHUB_TOKEN", "GH_TOKEN"):
+            secret = (env or os.environ).get(name)
+            if secret:
+                details = details.replace(secret, "[REDACTED]")
+        details = re.sub(r"https?://[^\s/@]+(?::[^\s/@]*)?@", "https://[REDACTED]@", details)
+        details = re.sub(r"(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+", "[REDACTED]", details)
+        command = next((arg for arg in args if arg in {
+            "add", "commit", "fetch", "rebase", "push", "status", "diff", "rev-parse"
+        }), "command")
+        raise RuntimeError(f"Git {command} failed (exit {result.returncode}).\n{details}")
     return result.stdout.strip()
 
 
@@ -34,14 +44,15 @@ def publish(repo, destination, token):
         env = dict(os.environ, GIT_ASKPASS=str(helper),
                    GIT_TERMINAL_PROMPT="0", COLAB_PUSH_TOKEN=token)
         git(repo, "add", "--", str(destination.relative_to(repo)))
-        if not git(repo, "diff", "--cached", "--name-only"):
-            return
-        git(repo, "-c", "user.name=Colab Lab Runner", "-c",
-            "user.email=colab-runner@users.noreply.github.com", "commit", "-m",
-            f"Save Colab results: {destination.name}")
+        if git(repo, "diff", "--cached", "--name-only"):
+            git(repo, "-c", "user.name=Colab Lab Runner", "-c",
+                "user.email=colab-runner@users.noreply.github.com", "commit", "-m",
+                f"Save Colab results: {destination.name}")
+        # Retry pushing even if a prior attempt already committed these files.
         for attempt in range(3):
             git(repo, "-c", "credential.helper=", "fetch", "origin", "main", env=env)
-            git(repo, "rebase", "origin/main")
+            git(repo, "-c", "user.name=Colab Lab Runner", "-c",
+                "user.email=colab-runner@users.noreply.github.com", "rebase", "origin/main")
             try:
                 git(repo, "-c", "credential.helper=", "push", "origin", "HEAD:main", env=env)
                 return
