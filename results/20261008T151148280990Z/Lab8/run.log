@@ -1,6 +1,0 @@
-GPU: Tesla T4
-Ảnh: (256, 256, 3)
-
- rgb2hsv_ms  hsv2rgb_ms    hue_error  max_rgb_error
-   0.189225    0.121673 7.085279e-08              0
-Kết quả và báo cáo: outputs/Lab8.zip (tải trong Files bên trái)

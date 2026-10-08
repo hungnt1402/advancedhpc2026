@@ -1,6 +1,0 @@
-GPU: Tesla T4
-Ảnh: (256, 256, 3)
-
- histogram_ms  equalization_ms  pixels  max_error
-     0.120481         0.092745   65536          0
-Kết quả và báo cáo: outputs/Lab9.zip (tải trong Files bên trái)

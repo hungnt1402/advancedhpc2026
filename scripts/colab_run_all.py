@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import tempfile
 from datetime import datetime, timezone
+from uuid import uuid4
 
 
 def git(repo, *args, env=None):
@@ -89,6 +90,10 @@ def execute_lab(source, work, compile_pdf):
         "if 'second' in globals():\n"
         "    _Image.fromarray(second).save(_out / 'input2.png')\n"
     ))
+    # New cells have IDs; older source notebooks may still declare format 4.4.
+    notebook.nbformat_minor = max(notebook.nbformat_minor, 5)
+    for cell in notebook.cells:
+        cell.setdefault("id", uuid4().hex)
     try:
         NotebookClient(notebook, timeout=1800, kernel_name="python3",
                        resources={"metadata": {"path": str(work)}}).execute()

@@ -1,3 +1,11 @@
 docs/
 __pycache__/
 *.py[cod]
+*.aux
+*.log
+!run.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls

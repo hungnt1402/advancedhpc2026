@@ -1,9 +1,0 @@
-GPU: Tesla T4
-Ảnh: (256, 256, 3)
-
-Global / shared speedup: 0.9700817533484084
-
-  mode      cpu_ms   gpu_ms  speedup_cpu  max_error  global_over_shared  rgb2hsv_ms
-global 6720.255136 0.886440  7581.170791          0            0.970082    0.126044
-shared 6720.255136 0.913779  7354.355453          0            0.970082    0.126044
-Kết quả và báo cáo: outputs/Lab10.zip (tải trong Files bên trái)

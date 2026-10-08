@@ -4,35 +4,26 @@ USTH Advanced Programming with Python 2026
 * Your name: **Nguyễn Thanh Hùng**
 * Your id: **2540056**
 
-Lab 3–10 chạy độc lập trên Google Colab; lab 2 giữ nguyên.
+Mỗi thư mục `Lab2`–`Lab10` có notebook đã chạy trên Colab. Báo cáo Lab 3–10 gồm file `Report.*.tex` và PDF tương ứng, dùng số liệu thật từ lần chạy ngày 08/10/2026 trên Tesla T4.
 
-1. Mở notebook của lab trên Colab.
-2. Chọn **Runtime → Change runtime type → T4 GPU** rồi **Run all**.
-3. Tải `outputs/LabN.zip` trong **Files**: ảnh kết quả, biểu đồ theo đề, CSV số liệu và báo cáo LaTeX. Giải nén rồi biên dịch file `Report.*.tex` để lấy PDF có số liệu thực tế.
+* `LabN/metrics.csv`: số liệu thời gian và kiểm tra sai số.
+* `LabN/figures/`: hình kết quả và biểu đồ dùng trong báo cáo.
+* `Lab9/histogram.csv`: histogram trước/sau cân bằng.
+* `data/`: ảnh đầu vào chung; `colab-run.json`: thông tin lần chạy và commit nguồn.
+* `results/`: ảnh đầu ra gốc và thông tin các lần chạy; các bản báo cáo và notebook trùng đã được dọn.
 
-Có thể tải `image.jpg` trước khi chạy (lab 6 thêm `image2.jpg`); nếu không có, notebook tự dùng ảnh mẫu. Ảnh thứ hai được chỉnh về cùng kích thước.
+Biên dịch báo cáo từ thư mục lab, ví dụ: `cd Lab3` rồi `pdflatex Report.3.cuda.tex`. Lab 2 giữ nguyên báo cáo.
 
-GPU được đo sau warm-up và đồng bộ, không tính truyền dữ liệu; mỗi cấu hình chạy ba lần. Cần GPU thật trên Colab để lấy số liệu tốc độ.
+## Chạy lại trên Colab
 
-PDF trong repo mô tả cách làm; báo cáo xuất từ Colab có thêm số liệu và hình của lần chạy đó.
+[Mở notebook chạy Lab 2–10](https://colab.research.google.com/github/hungnt1402/advancedhpc2026/blob/main/Run_All_Labs_Colab.ipynb).
 
-Notebook cài [Numba CUDA với bộ thư viện CUDA 12](https://nvidia.github.io/numba-cuda/user/installation.html).
+1. Chọn **Runtime → Change runtime type → T4 GPU**.
+2. Tạo [fine-grained token](https://github.com/settings/personal-access-tokens/new?name=Colab-Labs&target_name=hungnt1402&expires_in=7&contents=write), chọn repository này và quyền **Contents: Read and write**.
+3. Thêm token vào Colab **Secrets** với tên `GITHUB_TOKEN`, bật **Notebook access**.
+4. Chọn **Runtime → Run all**. Có thể sửa `LABS` để chạy riêng một số lab.
 
-
-## Ch?y t?t c? tr?n Colab v? t? l?u v?o GitHub
-
-[M? notebook ch?y Lab 2?10 tr?n Colab](https://colab.research.google.com/github/hungnt1402/advancedhpc2026/blob/main/Run_All_Labs_Colab.ipynb).
-
-1. Ch?n **Runtime ? Change runtime type ? T4 GPU**.
-2. [T?o fine-grained token GitHub](https://github.com/settings/personal-access-tokens/new), ch? ch?n repository n?y, c?p **Contents: Read and write**.
-3. Trong Colab m? **Secrets** (bi?u t??ng ch?a kh?a), th?m `GITHUB_TOKEN` v? b?t **Notebook access**. Kh?ng ghi token v?o notebook.
-4. T?y ch?n t?i `image.jpg` v? `image2.jpg` v?o `/content`, r?i ch?n **Runtime ? Run all**.
-
-Notebook ch?y l?n l??t Lab 2?10 v? push sau m?i lab v?o `results/<th?i ?i?m UTC>/LabN/` tr?n nh?nh `main`: notebook ?? ch?y, log, th?ng tin GPU, ?nh, CSV, m?ng NumPy n?u c?, LaTeX v? PDF. Lab 2 l?u th?ng tin thi?t b?. M?i l?n ch?y t?o th? m?c ri?ng, k?m `summary.json` ghi lab th?nh c?ng ho?c l?i v? commit ngu?n.
-
-`COMPILE_PDF = True` t? c?i LaTeX v? t?o PDF t? s? li?u th?c t?. C? th? ??t `False` ?? ch? l?u ngu?n LaTeX. N?u m?t lab l?i, c?c lab kh?c v?n ch?y; notebook l?i gi? trong th? m?c ch?n ?o?n tr?n Colab. N?u push l?i, ch??ng tr?nh d?ng; t?i k?t qu? trong Files tr??c khi ??ng phi?n.
-
-Colab c? gi?i h?n th?i gian v? GPU. N?u phi?n b? ng?t, m? l?i v? ??t `LABS` th?nh danh s?ch lab c?n thi?u, v? d? `[8, 9, 10]`. K?t qu? ?? push tr??c ?? v?n c?n tr?n GitHub.
+Kết quả mới được push sau mỗi lab vào `results/<thời điểm UTC>/LabN/`. `COMPILE_PDF = True` tạo cả PDF. Có thể tải `image.jpg` và `image2.jpg` vào `/content` trước khi chạy; mặc định notebook dùng ảnh mẫu. Nếu phiên bị ngắt, các kết quả đã push vẫn còn trên GitHub.
 
 Project
 ======================
