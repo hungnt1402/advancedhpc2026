@@ -1,4 +1,10 @@
-docs/
+# Track only the README, this file, and the lab directories.
+/*
+!/.gitignore
+!/README.md
+!/Lab*/
+
+*.pdf
 __pycache__/
 *.py[cod]
 *.aux

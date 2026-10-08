@@ -4,26 +4,9 @@ USTH Advanced Programming with Python 2026
 * Your name: **Nguyễn Thanh Hùng**
 * Your id: **2540056**
 
-Mỗi thư mục `Lab2`–`Lab10` có notebook đã chạy trên Colab. Báo cáo Lab 3–10 gồm file `Report.*.tex` và PDF tương ứng, dùng số liệu thật từ lần chạy ngày 08/10/2026 trên Tesla T4.
-
-* `LabN/metrics.csv`: số liệu thời gian và kiểm tra sai số.
-* `LabN/figures/`: hình kết quả và biểu đồ dùng trong báo cáo.
-* `Lab9/histogram.csv`: histogram trước/sau cân bằng.
-* `data/`: ảnh đầu vào chung; `colab-run.json`: thông tin lần chạy và commit nguồn.
-* `results/`: ảnh đầu ra gốc và thông tin các lần chạy; các bản báo cáo và notebook trùng đã được dọn.
-
-Biên dịch báo cáo từ thư mục lab, ví dụ: `cd Lab3` rồi `pdflatex Report.3.cuda.tex`. Lab 2 giữ nguyên báo cáo.
-
-## Chạy lại trên Colab
-
-[Mở notebook chạy Lab 2–10](https://colab.research.google.com/github/hungnt1402/advancedhpc2026/blob/main/Run_All_Labs_Colab.ipynb).
-
-1. Chọn **Runtime → Change runtime type → T4 GPU**.
-2. Tạo [fine-grained token](https://github.com/settings/personal-access-tokens/new?name=Colab-Labs&target_name=hungnt1402&expires_in=7&contents=write), chọn repository này và quyền **Contents: Read and write**.
-3. Thêm token vào Colab **Secrets** với tên `GITHUB_TOKEN`, bật **Notebook access**.
-4. Chọn **Runtime → Run all**. Có thể sửa `LABS` để chạy riêng một số lab.
-
-Kết quả mới được push sau mỗi lab vào `results/<thời điểm UTC>/LabN/`. `COMPILE_PDF = True` tạo cả PDF. Có thể tải `image.jpg` và `image2.jpg` vào `/content` trước khi chạy; mặc định notebook dùng ảnh mẫu. Nếu phiên bị ngắt, các kết quả đã push vẫn còn trên GitHub.
+Lab2-Lab10 contain the executed Colab notebooks and LaTeX reports.
+Lab3-Lab10 reports use the measured Tesla T4 results from October 8, 2026.
+Each lab keeps its CSV measurements and the figures used in its report.
 
 Project
 ======================
