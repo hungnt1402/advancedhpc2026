@@ -4,6 +4,9 @@
   "labs": {
     "Lab2": {
       "status": "success"
+    },
+    "Lab3": {
+      "status": "success"
     }
   }
 }
