@@ -115,8 +115,11 @@ def run_all(repo, token, labs=range(2, 11), compile_pdf=True, input_dir="/conten
         raise ValueError("Add GITHUB_TOKEN to Colab Secrets and enable notebook access.")
     if compile_pdf and not shutil.which("pdflatex"):
         raise RuntimeError("Install LaTeX first, or set COMPILE_PDF=False.")
-    if git(repo, "status", "--porcelain"):
-        raise RuntimeError("The checkout must be clean before running labs.")
+    changes = git(repo, "status", "--porcelain")
+    if changes:
+        raise RuntimeError(
+            "The checkout has unsaved changes. Save them before running labs.\n" + changes
+        )
     revision = git(repo, "rev-parse", "HEAD")
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     destination = repo / "results" / run_id
