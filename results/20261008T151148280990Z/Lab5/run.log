@@ -1,0 +1,16 @@
+GPU: Tesla T4
+Ảnh: (256, 256, 3)
+
+/usr/local/lib/python3.13/dist-packages/numba_cuda/numba/cuda/dispatcher.py:716: NumbaPerformanceWarning: Grid size 64 will likely result in GPU under-utilization due to low occupancy.
+  warn(errors.NumbaPerformanceWarning(msg))
+
+   block   mode     cpu_ms   gpu_ms     speedup  max_error
+  (8, 8) global 404.676676 0.194709 2078.371837          0
+  (8, 8) shared 404.676676 0.195901 2065.724544          0
+(16, 16) global 404.676676 0.193834 2087.745387          0
+(16, 16) shared 404.676676 0.194788 2077.523868          0
+(32, 16) global 404.676676 0.208378 1942.033181          0
+(32, 16) shared 404.676676 0.215848 1874.819956          0
+(32, 32) global 404.676676 0.239929 1686.654853          0
+(32, 32) shared 404.676676 0.248114 1631.009289          0
+Kết quả và báo cáo: outputs/Lab5.zip (tải trong Files bên trái)
