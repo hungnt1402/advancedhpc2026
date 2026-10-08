@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\title{Lab 10: Kuwahara Filter}
+\author{Nguyễn Thanh Hùng -- 2540056}
+\date{}
+\begin{document}
+\maketitle
+RGB2HSV produces brightness $V=\max(R,G,B)/255$. For radius 2, four $3\times3$ windows are compared by V variance; the RGB mean of the lowest-variance window becomes the output.
+The CPU and global-memory GPU compute the same windows. The shared GPU cooperatively loads a $20\times20$ RGB/V tile including halo for a $16\times16$ block, then synchronizes. The two-pixel border is preserved.
+The notebook checks both GPU outputs and reports CPU/global and global/shared speedups. RGB2HSV time is separate.
+Neighboring x threads access adjacent pixels; shared tiles reuse overlapping neighborhoods. No claim of eliminated bank conflicts is made without profiling.
+
+Kernel timing uses \texttt{time.time()} after JIT warm-up and CUDA synchronization,
+averaged over three GPU runs. Device allocation and host/device copies are excluded.
+CPU measurements are single runs. Speedup is relative to the stated CPU implementation.
+Actual measurements appear after running the notebook on Colab; no timings are assumed here.
+\IfFileExists{results.tex}{\input{results.tex}}{}
+\IfFileExists{performance.png}{\begin{center}\includegraphics[width=.75\linewidth]{performance.png}\end{center}}{}
+\IfFileExists{images.png}{\begin{center}\includegraphics[width=\linewidth]{images.png}\end{center}}{}
+\IfFileExists{histograms.png}{\begin{center}\includegraphics[width=.8\linewidth]{histograms.png}\end{center}}{}
+\end{document}
