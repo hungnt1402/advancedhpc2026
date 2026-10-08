@@ -19,6 +19,21 @@ PDF trong repo mô tả cách làm; báo cáo xuất từ Colab có thêm số l
 Notebook cài [Numba CUDA với bộ thư viện CUDA 12](https://nvidia.github.io/numba-cuda/user/installation.html).
 
 
+## Ch?y t?t c? tr?n Colab v? t? l?u v?o GitHub
+
+[M? notebook ch?y Lab 2?10 tr?n Colab](https://colab.research.google.com/github/hungnt1402/advancedhpc2026/blob/main/Run_All_Labs_Colab.ipynb).
+
+1. Ch?n **Runtime ? Change runtime type ? T4 GPU**.
+2. [T?o fine-grained token GitHub](https://github.com/settings/personal-access-tokens/new), ch? ch?n repository n?y, c?p **Contents: Read and write**.
+3. Trong Colab m? **Secrets** (bi?u t??ng ch?a kh?a), th?m `GITHUB_TOKEN` v? b?t **Notebook access**. Kh?ng ghi token v?o notebook.
+4. T?y ch?n t?i `image.jpg` v? `image2.jpg` v?o `/content`, r?i ch?n **Runtime ? Run all**.
+
+Notebook ch?y l?n l??t Lab 2?10 v? push sau m?i lab v?o `results/<th?i ?i?m UTC>/LabN/` tr?n nh?nh `main`: notebook ?? ch?y, log, th?ng tin GPU, ?nh, CSV, m?ng NumPy n?u c?, LaTeX v? PDF. Lab 2 l?u th?ng tin thi?t b?. M?i l?n ch?y t?o th? m?c ri?ng, k?m `summary.json` ghi lab th?nh c?ng ho?c l?i v? commit ngu?n.
+
+`COMPILE_PDF = True` t? c?i LaTeX v? t?o PDF t? s? li?u th?c t?. C? th? ??t `False` ?? ch? l?u ngu?n LaTeX. N?u m?t lab l?i, c?c lab kh?c v?n ch?y; notebook l?i gi? trong th? m?c ch?n ?o?n tr?n Colab. N?u push l?i, ch??ng tr?nh d?ng; t?i k?t qu? trong Files tr??c khi ??ng phi?n.
+
+Colab c? gi?i h?n th?i gian v? GPU. N?u phi?n b? ng?t, m? l?i v? ??t `LABS` th?nh danh s?ch lab c?n thi?u, v? d? `[8, 9, 10]`. K?t qu? ?? push tr??c ?? v?n c?n tr?n GitHub.
+
 Project
 ======================
 
